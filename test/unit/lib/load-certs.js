@@ -22,7 +22,7 @@ describe('loading the certificates', () => {
     const certs = {
       ca: '1',
       server: '1',
-      key: '1'
+      key: '1',
     };
 
     const loaded = loadCerts(certs);
@@ -35,8 +35,8 @@ describe('loading the certificates', () => {
           {
             cert_chain: Buffer.from('1'),
             private_key: Buffer.from('1'),
-          }
-        ]
+          },
+        ],
       ]
     );
     done();

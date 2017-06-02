@@ -10,7 +10,7 @@ module.exports = {
   log: {
     level: process.env.LOG_LEVEL || 'DEBUG',
     stream: process.env.ENV === 'test' ?
-      new bunyan.RingBuffer({limit: 1000}) :
+      new bunyan.RingBuffer({ limit: 1000 }) :
       process.stdout,
   },
   service: {

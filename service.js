@@ -1,6 +1,6 @@
 'use strict';
 
-const {Server, ServerCredentials} = require('grpc');
+const { Server, ServerCredentials } = require('grpc');
 
 const config    = require('config.js');
 const functions = require('./functions');
@@ -26,7 +26,7 @@ function service() {
 
   return {
     start: start,
-    stop: stop
+    stop: stop,
   };
 
   function start(cb) {

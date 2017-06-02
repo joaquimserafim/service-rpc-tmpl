@@ -1,13 +1,8 @@
 {
   "name": "service-rpc-tmpl",
   "version": "0.0.0",
-  "description": "service template that uses gRPC",
+  "description": "service template to build services with gRPC",
   "main": "index.js",
-  "files": [
-    "LICENSE",
-    "README.md",
-    "index.js"
-  ],
   "scripts": {
     "test": "ENV=test NODE_PATH=. nyc --reporter=html --reporter=text mocha --recursive",
     "lint": "jshint --verbose *.js lib/*.js functions/*.js functions/*/*.js test/*/*.js test/*/*/*.js",
@@ -53,7 +48,7 @@
       ".nyc_output"
     ],
     "preset": "airbnb",
-    "fix": true
+    "fix": false
   },
   "jshintConfig": {
     "boss": true,

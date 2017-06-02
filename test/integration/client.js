@@ -22,8 +22,8 @@ class Client {
               creedentials: {
                 ca: process.env.CERTS_CA,
                 key: pem.privateKey,
-                client: pem.certificate
-              }
+                client: pem.certificate,
+              },
             }
           );
         });

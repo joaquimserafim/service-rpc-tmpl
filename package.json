@@ -1,0 +1,104 @@
+{
+  "name": "service-rpc-tmpl",
+  "version": "0.0.0",
+  "description": "service template that uses gRPC",
+  "main": "index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.js"
+  ],
+  "scripts": {
+    "test": "ENV=test NODE_PATH=. nyc --reporter=html --reporter=text mocha --recursive",
+    "lint": "jshint --verbose *.js lib/*.js functions/*.js functions/*/*.js test/*/*.js test/*/*/*.js",
+    "style": "jscs .",
+    "coverage:check": "nyc check-coverage",
+    "coverage:open": "open reports/index.html",
+    "coverage": "nyc report --reporter=text-lcov"
+  },
+  "author": "@JoaquimSerafim",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaquimserafim/service-rpc-tmpl.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/joaquimserafim/service-rpc-tmpl/issues"
+  },
+  "homepage": "https://github.com/joaquimserafim/service-rpc-tmpl#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "grpc.client": "^1.0.0",
+    "jscs": "^3.0.7",
+    "jshint": "^2.9.4",
+    "mocha": "^3.4.2",
+    "nock": "^9.0.13",
+    "node-forge": "^0.7.1",
+    "nyc": "^10.3.2",
+    "pre-commit": "^1.2.2",
+    "thunky": "^1.0.2"
+  },
+  "dependencies": {
+    "bunyan": "^1.8.10",
+    "grpc": "^1.3.2"
+  },
+  "jscsConfig": {
+    "excludeFiles": [
+      "reports/*",
+      "node_modules/*",
+      "package.json",
+      "reports/*",
+      "npm-debug.log",
+      ".nyc_output"
+    ],
+    "preset": "airbnb",
+    "fix": true
+  },
+  "jshintConfig": {
+    "boss": true,
+    "node": true,
+    "strict": false,
+    "nonew": true,
+    "smarttabs": true,
+    "maxlen": 80,
+    "undef": true,
+    "unused": true,
+    "onecase": true,
+    "indent": 2,
+    "esversion": 6,
+    "eqeqeq": true,
+    "quotmark": "single",
+    "maxcomplexity": 10,
+    "maxparams": 5,
+    "maxdepth": 3,
+    "maxstatements": 25
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "statements": 100,
+    "functions": 100,
+    "branches": 100,
+    "exclude": [
+      "test/**",
+      "reports/*",
+      "npm-debug.log",
+      ".nyc_output"
+    ],
+    "report-dir": "./reports",
+    "cache": true,
+    "all": true,
+    "extension": [
+      ".js"
+    ]
+  },
+  "engines": {
+    "node": ">=6.10"
+  },
+  "pre-commit": [
+    "lint",
+    "style",
+    "test"
+  ]
+}

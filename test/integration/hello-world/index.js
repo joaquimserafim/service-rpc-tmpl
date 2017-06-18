@@ -21,13 +21,13 @@ describe('Hello World function', () => {
   });
 
   it('should throw an error with the respective error message ' +
-  'when the service responses with an error',
+    'when the service responses with an error',
     (done) => {
       client
         .call(serviceConfig, 'sayHello', {}, (err, res) => {
           expect(err).to.be.an.instanceof(Error);
           expect(res).to.be.equal(undefined);
-          client.serviceStop(done);
+          client.serviceTearDown(done);
         });
     }
   );

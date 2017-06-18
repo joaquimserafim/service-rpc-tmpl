@@ -1,7 +1,5 @@
 'use strict';
 
-const { load } = require('grpc');
-
 const logger = require('log.js').child({ origin: 'hello-world' });
 
 //
@@ -9,14 +7,13 @@ const logger = require('log.js').child({ origin: 'hello-world' });
 //
 
 module.exports = {
-  service: load('functions/hello-world/contracts/hello-world.proto')
-    .helloWorld
-    .Greeter
-    .service,
-  fn: { sayHello: sayHello },
+  proto: 'functions/hello-world/contracts/hello-world.proto',
+  package: 'helloWorld',
+  name: 'Greeter',
+  methods: { sayHello: sayHello }
 };
 
-function sayHello(call, cb) {
+function sayHello (call, cb) {
 
   logger.info({ req: call.request }, 'sayHello function');
 

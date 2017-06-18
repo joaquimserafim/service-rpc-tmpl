@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "ENV=test NODE_PATH=. nyc --reporter=html --reporter=text mocha --recursive",
-    "lint": "jshint --verbose *.js lib/*.js functions/*.js functions/*/*.js test/*/*.js test/*/*/*.js",
-    "style": "jscs .",
+    "lint": "jshint --verbose *.js lib/** functions/** test/**",
+    "style": "jscs *.js lib/** functions/** test/**",
     "coverage:check": "nyc check-coverage",
     "coverage:open": "open reports/index.html",
     "coverage": "nyc report --reporter=text-lcov"
@@ -23,32 +23,30 @@
   },
   "homepage": "https://github.com/joaquimserafim/service-rpc-tmpl#readme",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "grpc.client": "^1.0.0",
+    "chai": "^4.0.2",
+    "grpc.client": "^4.0.0",
     "jscs": "^3.0.7",
     "jshint": "^2.9.4",
     "mocha": "^3.4.2",
     "nock": "^9.0.13",
-    "node-forge": "^0.7.1",
-    "nyc": "^10.3.2",
+    "nyc": "^11.0.2",
     "pre-commit": "^1.2.2",
     "thunky": "^1.0.2"
   },
   "dependencies": {
     "bunyan": "^1.8.10",
-    "grpc": "^1.3.2"
+    "grpc.server": "^3.0.2"
   },
   "jscsConfig": {
     "excludeFiles": [
-      "reports/*",
-      "node_modules/*",
       "package.json",
-      "reports/*",
       "npm-debug.log",
       ".nyc_output"
     ],
     "preset": "airbnb",
-    "fix": false
+    "fix": false,
+    "requireTrailingComma": false,
+    "disallowSpacesInFunctionDeclaration": null
   },
   "jshintConfig": {
     "boss": true,
@@ -77,9 +75,7 @@
     "branches": 100,
     "exclude": [
       "test/**",
-      "reports/*",
-      "npm-debug.log",
-      ".nyc_output"
+      "reports/*"
     ],
     "report-dir": "./reports",
     "cache": true,

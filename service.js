@@ -1,51 +1,34 @@
 'use strict';
 
-const { Server, ServerCredentials } = require('grpc');
+const server = require('grpc.server');
 
 const config    = require('config.js');
 const functions = require('./functions');
-const loadCerts = require('lib/load-certs');
 const logger    = require('log.js').child({ origin: 'service' });
 
 module.exports = service();
 
-function service() {
-  const rpcServer = new Server();
+function service () {
+  const rpcServer = server(config.service.address, config.service.certs);
 
-  const address   = `${config.service.address}:${config.service.port}`;
-
-  const credentials = ServerCredentials
-    .createSsl
-    .apply(null, loadCerts(config.service.certs));
-
-  for (let f in functions) {
-    rpcServer.addService(functions[f].service, functions[f].fn);
-  }
-
-  rpcServer.bind(address, credentials);
+  rpcServer.addServices(functions);
 
   return {
     start: start,
     stop: stop,
   };
 
-  function start(cb) {
-    rpcServer.start();
+  function start (cb) {
+    logger.info(
+      { address: config.service.address },
+      `starting service at ${config.service.address}`
+    );
 
-    logger.info({ address: address }, 'service started');
-
-    return cb();
+    rpcServer.start(cb);
   }
 
-  function stop(cb) {
-    rpcServer.tryShutdown(shutdow);
-
-    function shutdow() {
-      setTimeout(() => {
-        logger.info('service stopped');
-        rpcServer.started = false;
-        cb();
-      }, 50);
-    }
+  function stop (cb) {
+    logger.info('stopping service...');
+    rpcServer.stop(cb);
   }
 }

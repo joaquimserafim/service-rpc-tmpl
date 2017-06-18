@@ -1,5 +1,5 @@
 'use strict';
 
-module.exports = {
-  helloWorld: require('./hello-world'),
-};
+module.exports = [
+  require('./hello-world')
+];

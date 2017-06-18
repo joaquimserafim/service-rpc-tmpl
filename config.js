@@ -14,12 +14,10 @@ module.exports = {
       process.stdout,
   },
   service: {
-    port: process.env.PORT || 50051,
-    address: process.env.ADDRESS || '127.0.0.1',
+    address: process.env.ADDRESS || 'localhost:50051',
     certs: {
       server: process.env.CERTS_SERVER,
-      key: process.env.CERTS_KEY,
-      ca: process.env.CERTS_CA,
+      key: process.env.CERTS_KEY
     },
   },
 };

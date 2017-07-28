@@ -7,6 +7,7 @@ const pkg = require('package.json');
 module.exports = {
   name: pkg.name,
   version: pkg.version,
+  env: process.env.ENV, 
   log: {
     level: process.env.LOG_LEVEL || 'DEBUG',
     stream: process.env.ENV === 'test' ?
